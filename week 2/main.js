@@ -48,3 +48,56 @@ for (const number of numbers){ // Goes inside the Set and takes every item
 productsMap.forEach((name, category) => { // Goes inside the Map and takes the category and the name of the products
     console.log(`${category}: ${name}`); // Shows the category and the name of the products
 })
+
+// ==================== Task 5 ====================
+//Validation and testing
+
+//products object array
+let invalidProduct = false;
+for (const product of products){
+    if (!product.id || !product.name || !product.price || !product.category){ // Checking if any data is invalid
+        console.log("The product is missing data");
+        invalidProduct = true;
+    } else if (typeof product.price !== "number" || product.price <= 0){ // Checking if the price is a valid number
+        console.log("The product have an invalid price");
+        invalidProduct = true;
+    }
+}
+if (!invalidProduct){
+    console.log("All products are valid");
+}
+
+//Set of numbers
+if (numbers.size === 0){ // Checking if the set is empty
+    console.log("The set is empty");
+} else {
+    let invalidNumberInSet = false;
+    for (const number of numbers){
+        if (typeof number !== "number"){ // Checking if the number is a valid number
+            console.log(`The value in ${number} is not a valid number`);
+            invalidNumberInSet = true;
+        }
+    }
+    if (!invalidNumberInSet){
+        console.log("All numbers in the set are valid");
+    }
+}
+
+// Map of products
+if (productsMap.size === 0){ // Checking if the map is empty
+    console.log("The map is empty");
+} else {
+    let invalidCategoryInMap = false;
+    productsMap.forEach((name, category) => {
+        if (!name || !category){ // Checking if any data is invalid
+            console.log("The map have missing data");
+            invalidCategoryInMap = true;
+        } else if (typeof name !== "string" && !Array.isArray(name) || typeof category !== "string"){ // Checking if the name if a valid string or an array of strings and if the category is a valid string
+            console.log(`The value in ${name} or ${category} is not a valid string`);
+            invalidCategoryInMap = true;
+        }
+    });
+    if (!invalidCategoryInMap){
+        console.log("All categories in the map are valid");
+    }
+}
